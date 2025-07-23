@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace Sayan.CardGame
 {
+    /// <summary>
+    /// Json Properties where level name and position store
+    /// </summary>
+
     [Serializable]
     public class LevelData
     {

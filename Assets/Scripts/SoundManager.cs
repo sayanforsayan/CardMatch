@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Sayan.CardGame
 {
+    /// <summary>
+    /// Game Sound with proper enum name
+    /// </summary>
     public class SoundManager : MonoBehaviour
     {
         public static SoundManager Instance;

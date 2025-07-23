@@ -17,7 +17,7 @@ namespace Sayan.CardGame
         {
             LoadLevel(allLevels[GameManager.Instance.Level]);
         }
-
+        // Load Level from json file
         void LoadLevel(TextAsset jsonFile)
         {
             if (jsonFile == null)
@@ -40,6 +40,7 @@ namespace Sayan.CardGame
             GameManager.Instance.TotalCard = images.Count / 2;
         }
 
+        // Shuffle Images and assign
         List<Sprite> GetShuffledCardImages(int count)
         {
             // Shuffle Images

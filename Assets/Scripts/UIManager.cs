@@ -24,6 +24,7 @@ namespace Sayan.CardGame
             ShowLevel(GameManager.Instance.Level + 1);
         }
 
+        // Next button call
         private void ButtonPress()
         {
             SoundManager.Instance.PlaySound(SoundType.Click);
@@ -34,6 +35,7 @@ namespace Sayan.CardGame
             ShowLevel(GameManager.Instance.Level + 1);
         }
 
+        //Reset button call
         private void ResetGame()
         {
             SoundManager.Instance.PlaySound(SoundType.Click);
@@ -43,6 +45,11 @@ namespace Sayan.CardGame
             gameOver.SetActive(false);
             GameManager.Instance.UpdateLevel();
         }
+
+        /// <summary>
+        /// Show updated information
+        /// </summary>
+        /// <param name="sc"></param>
 
         public void ShowScore(int sc)
         {

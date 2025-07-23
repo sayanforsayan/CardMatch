@@ -3,6 +3,9 @@ using DG.Tweening;
 
 namespace Sayan.CardGame
 {
+    /// <summary>
+    /// Card Properties are handling 
+    /// </summary>
     public class Card : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer frontRenderer;
@@ -31,15 +34,6 @@ namespace Sayan.CardGame
             cardImage = image;
             frontRenderer.sprite = image;
         }
-        /*
-                public void FlipCard(bool isActive)
-                {
-                    IsCollider(!isActive);
-                    isFlipped = isActive;
-                    frontRenderer.gameObject.SetActive(isActive);
-                    backRenderer.gameObject.SetActive(!isActive);
-                }
-        */
 
         public void FlipCard(bool isActive)
         {

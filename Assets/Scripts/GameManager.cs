@@ -8,9 +8,9 @@ namespace Sayan.CardGame
     {
         public static GameManager Instance { get; private set; }
 
-        public List<Sprite> cardImages;
-        public GameObject cardPrefab;
-        public Transform cardParent;
+        public List<Sprite> cardImages; // take all sprites
+        public GameObject cardPrefab; // card prefab
+        public Transform cardParent; // Card holder
         public int Level { get; set; } = 0;
         public int TotalCard { get; set; }
 
@@ -32,6 +32,7 @@ namespace Sayan.CardGame
             levelLoader = GetComponent<LevelLoader>();
         }
 
+        // Crad flip when card press
         public void OnCardFlipped(Card card)
         {
             if (isChecking) return;
@@ -45,6 +46,7 @@ namespace Sayan.CardGame
             }
         }
 
+        // Check card matching
         IEnumerator CheckMatch()
         {
             isChecking = true;
@@ -76,6 +78,8 @@ namespace Sayan.CardGame
             isChecking = false;
         }
 
+
+        // Check level completion
         void CheckLevel()
         {
             if (TotalCard == 0)
@@ -95,6 +99,7 @@ namespace Sayan.CardGame
             }
         }
 
+        // Load Level from LevelLoader
         public void UpdateLevel()
         {
             levelLoader.CallLevel();
