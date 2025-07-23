@@ -12,23 +12,27 @@ namespace Sayan.CardGame
         private bool isFlipped = false;
         private bool isMatched = false;
 
+        private void OnMouseDown()
+        {
+            if (!isFlipped && !isMatched)
+            {
+                FlipCard(true);
+                GameManager.Instance.OnCardFlipped(this);
+            }
+        }
+
+        public Sprite GetCardImage() => cardImage;
+        public void SetMatched() => isMatched = true;
+
         public void SetCard(Sprite image)
         {
             cardImage = image;
             frontRenderer.sprite = image;
         }
 
-        private void OnMouseDown()
-        {
-            if (!isFlipped && !isMatched)
-            {
-                FlipCard(true);
-                CardMatchManager.Instance.OnCardFlipped(this);
-            }
-        }
-
         public void FlipCard(bool isActive)
         {
+            IsCollider(!isActive);
             isFlipped = isActive;
             frontRenderer.gameObject.SetActive(isActive);
             backRenderer.gameObject.SetActive(!isActive);
@@ -39,9 +43,5 @@ namespace Sayan.CardGame
             if (coll != null)
                 coll.enabled = isEnabled;
         }
-
-        public Sprite GetCardImage() => cardImage;
-        public void SetMatched() => isMatched = true;
     }
-
 }

@@ -159,6 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frontRenderer: {fileID: 1594620664586846577}
   backRenderer: {fileID: 1594620663977193586}
+  coll: {fileID: 1594620664477387050}
 --- !u!1 &1594620664586846583
 GameObject:
   m_ObjectHideFlags: 0

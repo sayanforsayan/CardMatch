@@ -1,20 +1,26 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using UnityEngine.UI;
 
 namespace Sayan.CardGame
 {
     public class LevelLoader : MonoBehaviour
     {
-        public string levelName = "Level1";
+        public TextAsset[] allLevels;
 
         private void Start()
         {
-            LoadLevel(levelName);
+            CallLevel();
         }
 
-        void LoadLevel(string name)
+        public void CallLevel()
         {
-            TextAsset jsonFile = Resources.Load<TextAsset>($"Levels/{name}");
+            LoadLevel(allLevels[GameManager.Instance.Level]);
+        }
+
+        void LoadLevel(TextAsset jsonFile)
+        {
             if (jsonFile == null)
             {
                 Debug.LogError("JSON not found: " + name);
@@ -31,6 +37,8 @@ namespace Sayan.CardGame
                 Card card = cardObj.GetComponent<Card>();
                 card.SetCard(images[i]);
             }
+
+            GameManager.Instance.TotalCard = images.Count / 2;
         }
 
         List<Sprite> GetShuffledCardImages(int count)
