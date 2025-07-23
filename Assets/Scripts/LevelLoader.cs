@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using UnityEngine.UI;
+using System.Linq;
 
 namespace Sayan.CardGame
 {
@@ -43,6 +42,8 @@ namespace Sayan.CardGame
 
         List<Sprite> GetShuffledCardImages(int count)
         {
+            // Shuffle Images
+            GameManager.Instance.cardImages = GameManager.Instance.cardImages.OrderBy(x => System.Guid.NewGuid()).ToList();
             List<Sprite> pool = new List<Sprite>();
             int pairCount = count / 2;
 

@@ -56,28 +56,18 @@ namespace Sayan.CardGame
                 TotalCard--;
                 firstCard.SetMatched();
                 secondCard.SetMatched();
+                SoundManager.Instance.PlaySound(SoundType.Match);
                 UIManager.Instance.ShowScore(score);
                 Destroy(firstCard.gameObject);
                 Destroy(secondCard.gameObject);
-                if (TotalCard == 0)
-                {
-                    Level++;
-                    score = 0;
-                    turn = 0;
-                    if (levelLoader.allLevels.Length == Level)
-                    {
-                        UIManager.Instance.GameOver();
-                        Debug.Log("GameOver");
-                    }
-                    else
-                        UIManager.Instance.NextButtonActivation(true);
-                }
+                CheckLevel();
             }
             else
             {
                 firstCard.FlipCard(false);
                 secondCard.FlipCard(false);
                 turn++;
+                SoundManager.Instance.PlaySound(SoundType.Wrong);
                 UIManager.Instance.ShowTurn(turn);
             }
 
@@ -86,10 +76,27 @@ namespace Sayan.CardGame
             isChecking = false;
         }
 
-        public void UpdateLevel(bool isReset = false)
+        void CheckLevel()
         {
-            if (isReset)
-                Level = 0;
+            if (TotalCard == 0)
+            {
+                Level++;
+                score = 0;
+                turn = 0;
+                if (levelLoader.allLevels.Length == Level)
+                {
+                    SoundManager.Instance.PlaySound(SoundType.GameOver);
+                    UIManager.Instance.GameOver();
+                    Level = 0;
+                    Debug.Log("GameOver");
+                }
+                else
+                    UIManager.Instance.NextButtonActivation(true);
+            }
+        }
+
+        public void UpdateLevel()
+        {
             levelLoader.CallLevel();
         }
     }
